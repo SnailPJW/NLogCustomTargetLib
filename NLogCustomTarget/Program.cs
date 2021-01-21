@@ -16,16 +16,19 @@ namespace NLogCustomTarget
         }
         static void Main(string[] args)
         {
-            //MethodCallTarget target = new MethodCallTarget();
-            //target.ClassName = typeof(Program).AssemblyQualifiedName;
-            //target.MethodName = "LogMethod";
-            //target.Parameters.Add(new MethodCallParameter("${level}"));
-            //target.Parameters.Add(new MethodCallParameter("${message}"));
+            //方式1
+            MethodCallTarget target = new MethodCallTarget();
+            target.ClassName = typeof(Program).AssemblyQualifiedName;
+            target.MethodName = "LogMethod";
+            target.Parameters.Add(new MethodCallParameter("${level}"));
+            target.Parameters.Add(new MethodCallParameter("${message}"));
 
-            //NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Debug);
+            NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Error);
 
-            //Logger logger = LogManager.GetLogger("Program");
-            Logger logger = LogManager.GetCurrentClassLogger();
+            Logger logger = LogManager.GetLogger("Program");
+
+            //方式2
+            //Logger logger = LogManager.GetCurrentClassLogger();
 
             //very detailed logs, which may include high-volume information such as protocol payloads.
             //This log level is typically only enabled during development
